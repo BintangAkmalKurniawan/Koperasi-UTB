@@ -1,19 +1,8 @@
 [build]
-builder = "NIXPACKS"
+command = "composer install --no-dev --optimize-autoloader"
 
-[phases.setup]
-nixPkgs = [
-  "php82",
-  "php82Extensions.pdo_mysql",
-  "php82Extensions.mbstring",
-  "php82Extensions.tokenizer",
-  "php82Extensions.xml",
-  "php82Extensions.curl",
-  "php82Extensions.fileinfo"
-]
+[deploy]
+command = "php artisan migrate --force"
 
-[phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader"]
-
-[start]
-cmd = "php artisan serve --host=0.0.0.0 --port=8080"
+[install]
+command = "npm install && npm run build"
