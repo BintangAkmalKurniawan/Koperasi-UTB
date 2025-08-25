@@ -22,7 +22,9 @@ use App\Http\Controllers\TransaksiController;
 Route::redirect('/', '/login');
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('loginCheck');
-
+Route::get('/health', function () {
+    return response('OK', 200);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profil', [AuthController::class, 'profil'])->name('profil');
